@@ -13,6 +13,15 @@ ENV WORDPRESS_DB_USER=$MYSQLUSER
 ENV WORDPRESS_DB_PASSWORD=$MYSQLPASSWORD
 ENV WORDPRESS_TABLE_PREFIX="RW_"
 
+# Instale o Yarn
+RUN npm install -g yarn
+
+# Defina o diretório de trabalho
+WORKDIR /var/www/html
+
+# Use o Yarn para instalar as dependências do WordPress (ou outra aplicação)
+RUN yarn install
+
 RUN echo "ServerName 0.0.0.0" >> /etc/apache2/apache2.conf
 RUN echo "DirectoryIndex index.php index.html" >> /etc/apache2/apache2.conf
 
