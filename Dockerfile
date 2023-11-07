@@ -13,6 +13,11 @@ ENV WORDPRESS_DB_USER=$MYSQLUSER
 ENV WORDPRESS_DB_PASSWORD=$MYSQLPASSWORD
 ENV WORDPRESS_TABLE_PREFIX="RW_"
 
+# Instale o Node.js e o NPM
+RUN apt-get update && apt-get install -y curl
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+RUN apt-get install -y nodejs
+
 # Instale o Yarn
 RUN npm install -g yarn
 
@@ -20,7 +25,7 @@ RUN npm install -g yarn
 WORKDIR /var/www/html
 
 # Use o Yarn para instalar as dependências do WordPress (ou outra aplicação)
-RUN yarn install
+RUN cd wp-content/themes/fuerzastudio && yarn install
 
 RUN echo "ServerName 0.0.0.0" >> /etc/apache2/apache2.conf
 RUN echo "DirectoryIndex index.php index.html" >> /etc/apache2/apache2.conf
