@@ -13,11 +13,8 @@ ENV WORDPRESS_DB_USER=$MYSQLUSER
 ENV WORDPRESS_DB_PASSWORD=$MYSQLPASSWORD
 ENV WORDPRESS_TABLE_PREFIX="RW_"
 
-RUN apt-get update && apt-get install -y curl
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get install -y nodej
-
-# Instale o Yarn
+# Install Node.js and Yarn
+RUN apt-get update && apt-get install -y nodejs npm
 RUN npm install -g yarn
 
 # Defina o diretório de trabalho
