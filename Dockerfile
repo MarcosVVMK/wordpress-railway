@@ -30,6 +30,6 @@ RUN echo "upload_max_filesize = $SIZE_LIMIT" >> /usr/local/etc/php/php.ini
 RUN echo "post_max_size = $SIZE_LIMIT" >> /usr/local/etc/php/php.ini
 
 # Substituir a pasta wp-content da imagem por uma pasta personalizada
-VOLUME /var/www/html/wp-content
+RUN railway run -v wordpress_data:/var/www/html/wp-content
 
 CMD ["apache2-foreground"]
